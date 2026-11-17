@@ -181,10 +181,64 @@ footer{text-align:center;color:#77718f;font-size:10px;letter-spacing:1px;margin-
 const generateBtn = document.getElementById('generateBtn');
 const resultBox = document.getElementById('result');
 
+async function revealKeyFromSession() {
+  const params = new URLSearchParams(window.location.search);
+  const session = params.get('session');
+  if (!session) return;
+
+  generateBtn.style.display = 'none';
+  resultBox.textContent = 'VERIFYING YOUR ACCESS SESSION...';
+
+  try {
+    const response = await fetch('/api/keys/reveal?session=' + encodeURIComponent(session), {
+      method: 'GET',
+      cache: 'no-store'
+    });
+    const data = await response.json();
+    if (!response.ok || !data.ok || !data.key) {
+      throw new Error(data.error || 'This key session is invalid or already used.');
+    }
+
+    resultBox.textContent = '';
+    const title = document.createElement('div');
+    title.textContent = 'YOUR GALAXY ACCESS KEY';
+    title.style.cssText = 'font-weight:800;letter-spacing:1.5px;color:#d8c6ff;margin:8px 0 12px';
+
+    const key = document.createElement('div');
+    key.textContent = data.key;
+    key.style.cssText = 'padding:16px 12px;border:1px solid #a98aff66;border-radius:12px;background:#090817;color:#fff;font-size:clamp(14px,3vw,18px);font-weight:800;letter-spacing:1px;overflow-wrap:anywhere;user-select:all';
+
+    const copy = document.createElement('button');
+    copy.type = 'button';
+    copy.textContent = 'COPY ACCESS KEY';
+    copy.style.marginTop = '14px';
+    copy.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(data.key);
+        copy.textContent = 'COPIED';
+      } catch {
+        copy.textContent = 'SELECT THE KEY TO COPY';
+      }
+    });
+
+    const expiry = document.createElement('div');
+    expiry.textContent = 'Valid until: ' + new Date(data.expiresAt).toLocaleString();
+    expiry.style.cssText = 'margin-top:12px;color:#aaa2c2;font-size:11px';
+
+    resultBox.append(title, key, copy, expiry);
+    history.replaceState({}, document.title, window.location.pathname);
+  } catch (error) {
+    resultBox.textContent = error.message;
+    generateBtn.style.display = '';
+    generateBtn.disabled = false;
+    generateBtn.textContent = 'GENERATE ANOTHER KEY';
+  }
+}
+
 generateBtn.addEventListener('click', async () => {
   generateBtn.disabled = true;
-  generateBtn.textContent = 'CREATING VPLink...';
-  resultBox.textContent = 'Creating your secure access link...';
+  generateBtn.textContent = 'CREATING YOUR KEY...';
+  resultBox.textContent = 'Generating your key and opening VPLink...';
 
   try {
     const response = await fetch('/api/keys/generate', {
@@ -194,31 +248,20 @@ generateBtn.addEventListener('click', async () => {
     });
 
     const data = await response.json();
-
     if (!response.ok || !data.ok || !data.shortUrl) {
       throw new Error(data.error || 'VPLink creation failed');
     }
 
-    resultBox.textContent = 'Your VPLink is ready. Continue using the button below.';
-
-    const link = document.createElement('a');
-    link.href = data.shortUrl;
-    link.textContent = 'CONTINUE TO VPLink';
-    link.target = '_blank';
-    link.rel = 'noopener noreferrer';
-    link.style.cssText =
-      'display:block;margin-top:14px;padding:15px;border-radius:12px;background:linear-gradient(100deg,#8656dc,#5d72dc);color:white;text-decoration:none;font-weight:800;letter-spacing:1px';
-
-    resultBox.appendChild(link);
-    generateBtn.textContent = 'LINK CREATED';
-
+    resultBox.textContent = 'Your key is ready. Redirecting to VPLink...';
+    window.location.assign(data.shortUrl);
   } catch (error) {
     resultBox.textContent = error.message;
     generateBtn.textContent = 'TRY AGAIN';
-  } finally {
     generateBtn.disabled = false;
   }
 });
+
+revealKeyFromSession();
 </script>
 </body>
 </html>
