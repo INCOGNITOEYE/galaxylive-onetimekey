@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -6,84 +7,217 @@
 <meta name="theme-color" content="#070611">
 <title>GALAXY | License Center</title>
 <style>
-:root{color-scheme:dark;--bg:#070611;--panel:rgba(19,16,39,.78);--line:rgba(183,151,255,.25);--violet:#a985ff;--muted:#aaa2c2}
-*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Inter,system-ui,Segoe UI,Arial,sans-serif;background:var(--bg);color:#f7f2ff}
+:root{color-scheme:dark;--bg:#070611;--line:rgba(183,151,255,.25);--muted:#aaa2c2}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;font-family:Inter,system-ui,Segoe UI,Arial,sans-serif;background:#070611;color:#f7f2ff}
 body{overflow-x:hidden;background:radial-gradient(ellipse at 50% 15%,#201344 0%,#0b0920 38%,#05050d 78%)}
 #space{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
 .nebula{position:fixed;border-radius:50%;filter:blur(70px);opacity:.24;pointer-events:none;z-index:0;animation:drift 18s ease-in-out infinite alternate}
-.n1{width:340px;height:340px;background:#6635b8;top:5%;left:-130px}.n2{width:420px;height:420px;background:#174c9a;right:-190px;top:35%;animation-delay:-7s}.n3{width:300px;height:300px;background:#8c2f9e;bottom:-150px;left:30%;animation-delay:-11s}
+.n1{width:340px;height:340px;background:#6635b8;top:5%;left:-130px}
+.n2{width:420px;height:420px;background:#174c9a;right:-190px;top:35%;animation-delay:-7s}
+.n3{width:300px;height:300px;background:#8c2f9e;bottom:-150px;left:30%;animation-delay:-11s}
 @keyframes drift{to{transform:translate(50px,-35px) scale(1.15)}}
 .wrap{position:relative;z-index:2;max-width:1040px;margin:auto;padding:22px 18px 40px}
 header{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.08);padding:10px 0 20px}
-.brand{display:flex;gap:12px;align-items:center}.brandmark{width:42px;height:42px;border:1px solid var(--line);border-radius:14px;display:grid;place-items:center;background:linear-gradient(145deg,#30205b,#111127);box-shadow:0 0 28px #8055c544;font-size:22px}
-.brand strong{letter-spacing:2px;font-size:15px}.brand small{display:block;color:var(--muted);font-size:10px;letter-spacing:2px;margin-top:3px}
+.brand{display:flex;gap:12px;align-items:center}
+.brandmark{width:42px;height:42px;border:1px solid var(--line);border-radius:14px;display:grid;place-items:center;background:linear-gradient(145deg,#30205b,#111127);box-shadow:0 0 28px #8055c544;font-size:22px}
+.brand strong{letter-spacing:2px;font-size:15px}
+.brand small{display:block;color:var(--muted);font-size:10px;letter-spacing:2px;margin-top:3px}
 .status{font-size:10px;letter-spacing:1px;border:1px solid #3c9b7566;color:#8af0c0;padding:8px 11px;border-radius:99px;background:#14352855}
-.hero{text-align:center;padding:72px 0 36px}.eyebrow{color:#c7b2ff;font-size:11px;letter-spacing:3px;text-transform:uppercase}
+.hero{text-align:center;padding:72px 0 36px}
+.eyebrow{color:#c7b2ff;font-size:11px;letter-spacing:3px;text-transform:uppercase}
 h1{font-size:clamp(38px,8vw,76px);line-height:.98;margin:18px 0 14px;letter-spacing:-2px}
 h1 span{background:linear-gradient(90deg,#fff,#c7aaff 48%,#7b9dff);-webkit-background-clip:text;background-clip:text;color:transparent}
 .sub{color:var(--muted);max-width:540px;margin:0 auto;line-height:1.7;font-size:14px}
 .card{max-width:600px;margin:24px auto 28px;padding:26px;border:1px solid var(--line);border-radius:24px;background:linear-gradient(145deg,rgba(29,23,57,.88),rgba(11,10,27,.82));box-shadow:0 20px 80px #0008,0 0 55px #8858d51a;backdrop-filter:blur(16px)}
-.cardtop{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}.card h2{font-size:15px;letter-spacing:1.4px;margin:0}.step{color:#c4aaff;font-size:10px;letter-spacing:2px}
+.cardtop{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.card h2{font-size:15px;letter-spacing:1.4px;margin:0}
+.step{color:#c4aaff;font-size:10px;letter-spacing:2px}
 .desc{color:var(--muted);font-size:13px;line-height:1.6;margin:10px 0 22px}
-.steps{display:grid;gap:10px}.stepbox{display:flex;gap:13px;align-items:center;padding:14px;border:1px solid #ffffff12;border-radius:14px;background:#ffffff06}
+.steps{display:grid;gap:10px}
+.stepbox{display:flex;gap:13px;align-items:center;padding:14px;border:1px solid #ffffff12;border-radius:14px;background:#ffffff06}
 .num{width:32px;height:32px;border-radius:10px;display:grid;place-items:center;background:#8e66dc22;color:#d9c9ff;font-size:12px;font-weight:700;flex:none}
-.stepbox b{font-size:13px}.stepbox small{display:block;color:var(--muted);font-size:11px;margin-top:4px;line-height:1.4}
-button{width:100%;border:0;border-radius:13px;padding:16px 18px;margin-top:20px;background:linear-gradient(100deg,#8656dc,#5d72dc);color:white;font-weight:800;letter-spacing:1.2px;font-size:13px;box-shadow:0 8px 30px #7454d955;cursor:pointer}button:disabled{cursor:wait;opacity:.65}.keyout{margin-top:14px;padding:14px;border:1px solid #9d7cff66;border-radius:12px;background:#090817;color:#e8ddff;font:700 14px ui-monospace,monospace;overflow-wrap:anywhere;user-select:all}.copybtn{margin-top:10px;background:#272044;box-shadow:none}
-.note{text-align:center;color:#8e86a8;font-size:10px;margin-top:12px}
+.stepbox b{font-size:13px}
+.stepbox small{display:block;color:var(--muted);font-size:11px;margin-top:4px;line-height:1.4}
+button{width:100%;border:0;border-radius:13px;padding:16px 18px;margin-top:20px;background:linear-gradient(100deg,#8656dc,#5d72dc);color:white;font-weight:800;letter-spacing:1.2px;font-size:13px;box-shadow:0 8px 30px #7454d955;cursor:pointer}
+button:disabled{cursor:wait;opacity:.65}
+.note{text-align:center;color:#8e86a8;font-size:11px;margin-top:12px;line-height:1.6}
 .features{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:600px;margin:0 auto}
 .feature{text-align:center;padding:17px 8px;border:1px solid #ffffff12;border-radius:16px;background:#ffffff06}
-.feature i{font-style:normal;font-size:20px}.feature b{display:block;font-size:11px;letter-spacing:1px;margin-top:9px}.feature small{display:block;color:var(--muted);font-size:10px;margin-top:4px}
+.feature i{font-style:normal;font-size:20px}
+.feature b{display:block;font-size:11px;letter-spacing:1px;margin-top:9px}
+.feature small{display:block;color:var(--muted);font-size:10px;margin-top:4px}
 footer{text-align:center;color:#77718f;font-size:10px;letter-spacing:1px;margin-top:42px}
 .blackhole{position:fixed;width:190px;height:190px;border-radius:50%;z-index:1;pointer-events:none;opacity:.42;filter:drop-shadow(0 0 24px #7d50dc66)}
 .blackhole:before{content:"";position:absolute;inset:26%;border-radius:50%;background:#020208;box-shadow:0 0 24px 12px #000,0 0 50px #000}
 .blackhole:after{content:"";position:absolute;inset:18% 3%;border-radius:50%;border:5px solid transparent;border-top-color:#a77cff;border-bottom-color:#4779da;transform:rotate(-28deg);filter:blur(2px);box-shadow:0 0 18px #9a6cff}
-.bh1{top:23%;left:-105px;transform:scale(.9)}.bh2{right:-115px;bottom:12%;transform:scale(1.2)}
-@media(max-width:600px){.wrap{padding:16px 14px 30px}.hero{padding:58px 0 25px}.card{padding:20px 16px}.features{gap:7px}.feature{padding:14px 4px}.feature b{font-size:9px}.feature small{font-size:9px}.blackhole{opacity:.24}}
+.bh1{top:23%;left:-105px;transform:scale(.9)}
+.bh2{right:-115px;bottom:12%;transform:scale(1.2)}
+@media(max-width:600px){
+.wrap{padding:16px 14px 30px}
+.hero{padding:58px 0 25px}
+.card{padding:20px 16px}
+.features{gap:7px}
+.feature{padding:14px 4px}
+.feature b{font-size:9px}
+.feature small{font-size:9px}
+.blackhole{opacity:.24}
+}
 </style>
 </head>
 <body>
-<canvas id="space"></canvas><div class="nebula n1"></div><div class="nebula n2"></div><div class="nebula n3"></div>
-<div class="blackhole bh1"></div><div class="blackhole bh2"></div>
+<canvas id="space"></canvas>
+<div class="nebula n1"></div>
+<div class="nebula n2"></div>
+<div class="nebula n3"></div>
+<div class="blackhole bh1"></div>
+<div class="blackhole bh2"></div>
+
 <div class="wrap">
-<header><div class="brand"><div class="brandmark">✦</div><div><strong>GALAXY</strong><small>LICENSE CENTER</small></div></div><div class="status">● SYSTEM ONLINE</div></header>
-<section class="hero"><div class="eyebrow">✧ Secure access portal ✧</div><h1>UNLOCK YOUR<br><span>UNIVERSE</span></h1><p class="sub">Your access. Your device. Your Galaxy.<br>A centralized license portal for GALAXY applications.</p></section>
-<section class="card"><div class="cardtop"><h2>GET YOUR ACCESS KEY</h2><span class="step">01 / 03</span></div><p class="desc">Follow the steps to receive and activate your unique access key.</p>
-<div class="steps">
-<div class="stepbox"><div class="num">01</div><div><b>Generate your key</b><small>Create a unique license key for your app.</small></div></div>
-<div class="stepbox"><div class="num">02</div><div><b>Complete link verification</b><small>Link verification will be connected after the provider's approved completion method is confirmed.</small></div></div>
-<div class="stepbox"><div class="num">03</div><div><b>Activate your access</b><small>Use your key in the connected Android app.</small></div></div>
-</div>
-<button id="generateBtn" type="button">GENERATE ACCESS KEY</button>
-<div id="result" class="note" role="status" aria-live="polite">A new key is valid for 6 hours from generation.</div></section>
-<section class="features">
-<div class="feature"><i>▣</i><b>ONE DEVICE</b><small>Device binding</small></div>
-<div class="feature"><i>◷</i><b>6 HOURS</b><small>Validity window</small></div>
-<div class="feature"><i>✧</i><b>ONE TIME</b><small>Single activation</small></div>
+<header>
+  <div class="brand">
+    <div class="brandmark">✦</div>
+    <div><strong>GALAXY</strong><small>LICENSE CENTER</small></div>
+  </div>
+  <div class="status">● SYSTEM ONLINE</div>
+</header>
+
+<section class="hero">
+  <div class="eyebrow">✧ Secure access portal ✧</div>
+  <h1>UNLOCK YOUR<br><span>UNIVERSE</span></h1>
+  <p class="sub">Your access. Your device. Your Galaxy.<br>A centralized license portal for GALAXY applications.</p>
 </section>
+
+<section class="card">
+  <div class="cardtop">
+    <h2>GET YOUR ACCESS KEY</h2>
+    <span class="step">01 / 03</span>
+  </div>
+
+  <p class="desc">Follow the steps to receive and activate your unique access key.</p>
+
+  <div class="steps">
+    <div class="stepbox">
+      <div class="num">01</div>
+      <div><b>Generate your key</b><small>Create a unique license key for your app.</small></div>
+    </div>
+    <div class="stepbox">
+      <div class="num">02</div>
+      <div><b>Continue through VPLink</b><small>Open your personal short link to continue.</small></div>
+    </div>
+    <div class="stepbox">
+      <div class="num">03</div>
+      <div><b>Activate your access</b><small>Use your key in the connected Android app.</small></div>
+    </div>
+  </div>
+
+  <button id="generateBtn" type="button">GENERATE ACCESS KEY</button>
+  <div id="result" class="note" role="status" aria-live="polite">A new key is valid for 6 hours from generation.</div>
+</section>
+
+<section class="features">
+  <div class="feature"><i>▣</i><b>ONE DEVICE</b><small>Device binding</small></div>
+  <div class="feature"><i>◷</i><b>6 HOURS</b><small>Validity window</small></div>
+  <div class="feature"><i>✧</i><b>ONE TIME</b><small>Single activation</small></div>
+</section>
+
 <footer>POWERED BY GALAXY CENTRAL SYSTEM</footer>
 </div>
-<script>
-(()=>{const c=document.getElementById('space'),ctx=c.getContext('2d');let w,h,dpr,stars=[];
-function resize(){dpr=Math.min(devicePixelRatio||1,2);w=innerWidth;h=innerHeight;c.width=w*dpr;c.height=h*dpr;c.style.width=w+'px';c.style.height=h+'px';ctx.setTransform(dpr,0,0,dpr,0,0);stars=Array.from({length:Math.min(230,Math.floor(w*h/4200))},()=>({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.4+.25,a:Math.random()*.75+.15,s:Math.random()*.22+.04,p:Math.random()*6.28}));}
-function draw(t){ctx.clearRect(0,0,w,h);for(const s of stars){s.y+=s.s;if(s.y>h){s.y=0;s.x=Math.random()*w}const tw=.55+Math.sin(t*.0015+s.p)*.35;ctx.beginPath();ctx.fillStyle=`rgba(220,210,255,${s.a*tw})`;ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fill();}requestAnimationFrame(draw)}
-addEventListener('resize',resize);resize();requestAnimationFrame(draw)})();
 
-const generateBtn=document.getElementById('generateBtn');
-const resultBox=document.getElementById('result');
-generateBtn.addEventListener('click',async()=>{
-  generateBtn.disabled=true; generateBtn.textContent='GENERATING...';
-  resultBox.textContent='Creating your key securely...';
-  try{
-    const response=await fetch('/api/keys/generate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({appId:'GALAXY_LIVE_01'})});
-    const data=await response.json();
-    if(!response.ok||!data.ok) throw new Error(data.error||'Could not generate key');
-    const expiry=new Date(data.expiresAt);
-    resultBox.innerHTML='Your key is ready. It expires at '+expiry.toLocaleString()+'.<div class="keyout" id="keyValue"></div><button class="copybtn" id="copyKey" type="button">COPY KEY</button>';
-    document.getElementById('keyValue').textContent=data.key;
-    document.getElementById('copyKey').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(data.key);document.getElementById('copyKey').textContent='COPIED';}catch{document.getElementById('copyKey').textContent='SELECT AND COPY THE KEY';}});
-    generateBtn.textContent='GENERATE ANOTHER KEY';
-  }catch(err){resultBox.textContent=err.message;generateBtn.textContent='TRY AGAIN';}
-  finally{generateBtn.disabled=false;}
+<script>
+(() => {
+  const c = document.getElementById('space');
+  const ctx = c.getContext('2d');
+  let w, h, dpr, stars = [];
+
+  function resize() {
+    dpr = Math.min(devicePixelRatio || 1, 2);
+    w = innerWidth;
+    h = innerHeight;
+    c.width = w * dpr;
+    c.height = h * dpr;
+    c.style.width = w + 'px';
+    c.style.height = h + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    stars = Array.from(
+      {length: Math.min(230, Math.floor(w * h / 4200))},
+      () => ({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        r: Math.random() * 1.4 + .25,
+        a: Math.random() * .75 + .15,
+        s: Math.random() * .22 + .04,
+        p: Math.random() * 6.28
+      })
+    );
+  }
+
+  function draw(t) {
+    ctx.clearRect(0, 0, w, h);
+
+    for (const s of stars) {
+      s.y += s.s;
+      if (s.y > h) {
+        s.y = 0;
+        s.x = Math.random() * w;
+      }
+
+      const tw = .55 + Math.sin(t * .0015 + s.p) * .35;
+      ctx.beginPath();
+      ctx.fillStyle = `rgba(220,210,255,${s.a * tw})`;
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    requestAnimationFrame(draw);
+  }
+
+  addEventListener('resize', resize);
+  resize();
+  requestAnimationFrame(draw);
+})();
+
+const generateBtn = document.getElementById('generateBtn');
+const resultBox = document.getElementById('result');
+
+generateBtn.addEventListener('click', async () => {
+  generateBtn.disabled = true;
+  generateBtn.textContent = 'CREATING VPLink...';
+  resultBox.textContent = 'Creating your secure access link...';
+
+  try {
+    const response = await fetch('/api/keys/generate', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({appId: 'GALAXY_LIVE_01'})
+    });
+
+    const data = await response.json();
+
+    if (!response.ok || !data.ok || !data.shortUrl) {
+      throw new Error(data.error || 'VPLink creation failed');
+    }
+
+    resultBox.textContent = 'Your VPLink is ready. Continue using the button below.';
+
+    const link = document.createElement('a');
+    link.href = data.shortUrl;
+    link.textContent = 'CONTINUE TO VPLink';
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    link.style.cssText =
+      'display:block;margin-top:14px;padding:15px;border-radius:12px;background:linear-gradient(100deg,#8656dc,#5d72dc);color:white;text-decoration:none;font-weight:800;letter-spacing:1px';
+
+    resultBox.appendChild(link);
+    generateBtn.textContent = 'LINK CREATED';
+
+  } catch (error) {
+    resultBox.textContent = error.message;
+    generateBtn.textContent = 'TRY AGAIN';
+  } finally {
+    generateBtn.disabled = false;
+  }
 });
 </script>
 </body>
