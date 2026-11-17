@@ -1,0 +1,15 @@
+{
+  "name": "galaxy-key-system",
+  "version": "1.0.0",
+  "private": true,
+  "description": "GALAXY Central License System",
+  "scripts": {
+    "dev": "vercel dev"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.57.0"
+  },
+  "devDependencies": {
+    "vercel": "^48.0.0"
+  }
+}
