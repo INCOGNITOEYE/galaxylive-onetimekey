@@ -28,7 +28,7 @@ h1 span{background:linear-gradient(90deg,#fff,#c7aaff 48%,#7b9dff);-webkit-backg
 .steps{display:grid;gap:10px}.stepbox{display:flex;gap:13px;align-items:center;padding:14px;border:1px solid #ffffff12;border-radius:14px;background:#ffffff06}
 .num{width:32px;height:32px;border-radius:10px;display:grid;place-items:center;background:#8e66dc22;color:#d9c9ff;font-size:12px;font-weight:700;flex:none}
 .stepbox b{font-size:13px}.stepbox small{display:block;color:var(--muted);font-size:11px;margin-top:4px;line-height:1.4}
-button{width:100%;border:0;border-radius:13px;padding:16px 18px;margin-top:20px;background:linear-gradient(100deg,#8656dc,#5d72dc);color:white;font-weight:800;letter-spacing:1.2px;font-size:13px;box-shadow:0 8px 30px #7454d955;cursor:not-allowed;opacity:.8}
+button{width:100%;border:0;border-radius:13px;padding:16px 18px;margin-top:20px;background:linear-gradient(100deg,#8656dc,#5d72dc);color:white;font-weight:800;letter-spacing:1.2px;font-size:13px;box-shadow:0 8px 30px #7454d955;cursor:pointer}button:disabled{cursor:wait;opacity:.65}.keyout{margin-top:14px;padding:14px;border:1px solid #9d7cff66;border-radius:12px;background:#090817;color:#e8ddff;font:700 14px ui-monospace,monospace;overflow-wrap:anywhere;user-select:all}.copybtn{margin-top:10px;background:#272044;box-shadow:none}
 .note{text-align:center;color:#8e86a8;font-size:10px;margin-top:12px}
 .features{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:600px;margin:0 auto}
 .feature{text-align:center;padding:17px 8px;border:1px solid #ffffff12;border-radius:16px;background:#ffffff06}
@@ -53,8 +53,8 @@ footer{text-align:center;color:#77718f;font-size:10px;letter-spacing:1px;margin-
 <div class="stepbox"><div class="num">02</div><div><b>Complete link verification</b><small>Link verification will be connected after the provider's approved completion method is confirmed.</small></div></div>
 <div class="stepbox"><div class="num">03</div><div><b>Activate your access</b><small>Use your key in the connected Android app.</small></div></div>
 </div>
-<button type="button" disabled>KEY GENERATION COMING SOON</button>
-<div class="note">Preview build · License generation is not enabled yet</div></section>
+<button id="generateBtn" type="button">GENERATE ACCESS KEY</button>
+<div id="result" class="note" role="status" aria-live="polite">A new key is valid for 6 hours from generation.</div></section>
 <section class="features">
 <div class="feature"><i>▣</i><b>ONE DEVICE</b><small>Device binding</small></div>
 <div class="feature"><i>◷</i><b>6 HOURS</b><small>Validity window</small></div>
@@ -67,6 +67,24 @@ footer{text-align:center;color:#77718f;font-size:10px;letter-spacing:1px;margin-
 function resize(){dpr=Math.min(devicePixelRatio||1,2);w=innerWidth;h=innerHeight;c.width=w*dpr;c.height=h*dpr;c.style.width=w+'px';c.style.height=h+'px';ctx.setTransform(dpr,0,0,dpr,0,0);stars=Array.from({length:Math.min(230,Math.floor(w*h/4200))},()=>({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.4+.25,a:Math.random()*.75+.15,s:Math.random()*.22+.04,p:Math.random()*6.28}));}
 function draw(t){ctx.clearRect(0,0,w,h);for(const s of stars){s.y+=s.s;if(s.y>h){s.y=0;s.x=Math.random()*w}const tw=.55+Math.sin(t*.0015+s.p)*.35;ctx.beginPath();ctx.fillStyle=`rgba(220,210,255,${s.a*tw})`;ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fill();}requestAnimationFrame(draw)}
 addEventListener('resize',resize);resize();requestAnimationFrame(draw)})();
+
+const generateBtn=document.getElementById('generateBtn');
+const resultBox=document.getElementById('result');
+generateBtn.addEventListener('click',async()=>{
+  generateBtn.disabled=true; generateBtn.textContent='GENERATING...';
+  resultBox.textContent='Creating your key securely...';
+  try{
+    const response=await fetch('/api/keys/generate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({appId:'GALAXY_LIVE_01'})});
+    const data=await response.json();
+    if(!response.ok||!data.ok) throw new Error(data.error||'Could not generate key');
+    const expiry=new Date(data.expiresAt);
+    resultBox.innerHTML='Your key is ready. It expires at '+expiry.toLocaleString()+'.<div class="keyout" id="keyValue"></div><button class="copybtn" id="copyKey" type="button">COPY KEY</button>';
+    document.getElementById('keyValue').textContent=data.key;
+    document.getElementById('copyKey').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(data.key);document.getElementById('copyKey').textContent='COPIED';}catch{document.getElementById('copyKey').textContent='SELECT AND COPY THE KEY';}});
+    generateBtn.textContent='GENERATE ANOTHER KEY';
+  }catch(err){resultBox.textContent=err.message;generateBtn.textContent='TRY AGAIN';}
+  finally{generateBtn.disabled=false;}
+});
 </script>
 </body>
 </html>
